@@ -9,6 +9,7 @@ auto_auth {
   method {
     type = "approle"
       config = {
+        role_name = "gda-reader"
         role_id_file_path = "/vault_agent/config/role_id"
         secret_id_file_path = "/vault_agent/config/secret_id"
      }
