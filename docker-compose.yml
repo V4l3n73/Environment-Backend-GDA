@@ -34,6 +34,7 @@ services:
       URL_DOMAIN: http://localhost:4200
       MINIO_HOST: minio
       MINIO_PORT: 9000
+      MAIL_RECOVERY: valentin.martinezdev@gmail.com
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_HTTP_PORTS: "5000"
       ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
