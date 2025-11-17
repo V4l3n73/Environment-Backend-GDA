@@ -9,9 +9,8 @@ auto_auth {
   method {
     type = "approle"
       config = {
-        role_id_file_path = "/vault/config/role_id"
-       secret_id_file_path = "/vault/config/secret_id"
-       remove_secret_id_file_after_reading = false
+        role_id_file_path = "/vault_agent/config/role_id"
+        secret_id_file_path = "/vault_agent/config/secret_id"
      }
   }
   sink "file" {
