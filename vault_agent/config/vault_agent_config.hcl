@@ -9,8 +9,8 @@ auto_auth {
   method {
     type = "approle"
       config = {
-        role_id = "Aqui va el role id inyectado por jenkins"
-        secret_id = "Aqui va el secret id inyectado por jenkins"
+        role_id_file_path = "/vault_agent/config/role_id"
+        secret_id_file_path = "/vault_agent/config/secret_id"
      }
   }
   sink "file" {
