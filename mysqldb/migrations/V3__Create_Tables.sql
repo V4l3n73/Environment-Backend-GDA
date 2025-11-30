@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `Users`(
     NationalId VARCHAR(20) NOT NULL,
     PhoneNumber VARCHAR(20) NOT NULL,
     Password VARCHAR(100) NOT NULL,
-    RegisteredDate DATE NOT NULL,
+    RegisteredDate DATETIME NOT NULL,
     RoleId INT NOT NULL,
     FOREIGN KEY (RoleId) REFERENCES Roles(Id)
     ) ENGINE = InnoDB;
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `SecureRandomTokens`(
     TokenHash VARCHAR(100) NOT NULL,
     ExpiredDate DATETIME NOT NULL,
     Used BOOLEAN NOT NULL,
-    CreatedDate DATE NOT NULL,
+    CreatedDate DATETIME NOT NULL,
     UserId INT NOT NULL,
     FOREIGN KEY (UserId) REFERENCES Users(Id)
     ) ENGINE = InnoDB;
@@ -31,15 +31,15 @@ CREATE TABLE IF NOT EXISTS `Clients`(
     LastName VARCHAR(20) NOT NULL,
     Email VARCHAR(50) NOT NULL,
     PhoneNumber VARCHAR(20) NOT NULL,
-    RegisteredDate DATE NOT NULL
+    RegisteredDate DATETIME NOT NULL
     ) ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Batteries`(
     Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     ChipId VARCHAR(20) UNIQUE NOT NULL,
     WorkOrder VARCHAR(10),
     Type VARCHAR(10) NOT NULL,
-    SaleDate DATE,
-    RegisteredDate DATE NOT NULL,
+    SaleDate DATETIME,
+    RegisteredDate DATETIME NOT NULL,
     ClientId INT,
     FOREIGN KEY (ClientId) REFERENCES Clients(Id)
     ) ENGINE = InnoDB;
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `Status`(
 CREATE TABLE IF NOT EXISTS `Reports`(
     Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     ReportState VARCHAR(10),
-    ReportDate DATE NOT NULL,
+    ReportDate DATETIME NOT NULL,
     BatteryId INT NOT NULL,
     StatusId INT NOT NULL,
     FOREIGN KEY (BatteryId) REFERENCES Batteries(Id),
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `MeasurementsStatus`(
 CREATE TABLE IF NOT EXISTS `Measurements`(
     Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     Magnitude VARCHAR(20) NOT NULL,
-    MeasurementDate DATE NOT NULL,
+    MeasurementDate DATETIME NOT NULL,
     BatteryId INT NOT NULL,
     FOREIGN KEY (BatteryId) REFERENCES Batteries(Id)
     ) ENGINE = InnoDB;
