@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `Reports`(
     Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     ReportState VARCHAR(10),
     ReportDate DATETIME NOT NULL,
+    FileName CHAR(36) NOT NULL;
     BatteryId INT NOT NULL,
     StatusId INT NOT NULL,
     FOREIGN KEY (BatteryId) REFERENCES Batteries(Id),
