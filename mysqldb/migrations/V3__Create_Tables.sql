@@ -11,9 +11,18 @@ CREATE TABLE IF NOT EXISTS `Users`(
     NationalId VARCHAR(20) NOT NULL,
     PhoneNumber VARCHAR(20) NOT NULL,
     Password VARCHAR(100) NOT NULL,
-    DateRegistered DATE NOT NULL,
+    RegisteredDate DATETIME NOT NULL,
     RoleId INT NOT NULL,
     FOREIGN KEY (RoleId) REFERENCES Roles(Id)
+    ) ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `SecureRandomTokens`(
+    Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    TokenHash VARCHAR(100) NOT NULL,
+    ExpiredDate DATETIME NOT NULL,
+    Used BOOLEAN NOT NULL,
+    CreatedDate DATETIME NOT NULL,
+    UserId INT NOT NULL,
+    FOREIGN KEY (UserId) REFERENCES Users(Id)
     ) ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Clients`(
     Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -22,15 +31,15 @@ CREATE TABLE IF NOT EXISTS `Clients`(
     LastName VARCHAR(20) NOT NULL,
     Email VARCHAR(50) NOT NULL,
     PhoneNumber VARCHAR(20) NOT NULL,
-    DateRegistered DATE NOT NULL
+    RegisteredDate DATETIME NOT NULL
     ) ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Batteries`(
     Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     ChipId VARCHAR(20) UNIQUE NOT NULL,
     WorkOrder VARCHAR(10),
     Type VARCHAR(10) NOT NULL,
-    SaleDate DATE,
-    DateRegistered DATE NOT NULL,
+    SaleDate DATETIME,
+    RegisteredDate DATETIME NOT NULL,
     ClientId INT,
     FOREIGN KEY (ClientId) REFERENCES Clients(Id)
     ) ENGINE = InnoDB;
@@ -41,7 +50,8 @@ CREATE TABLE IF NOT EXISTS `Status`(
 CREATE TABLE IF NOT EXISTS `Reports`(
     Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     ReportState VARCHAR(10),
-    ReportDate DATE NOT NULL,
+    ReportDate DATETIME NOT NULL,
+    FileName CHAR(36) NOT NULL,
     BatteryId INT NOT NULL,
     StatusId INT NOT NULL,
     FOREIGN KEY (BatteryId) REFERENCES Batteries(Id),
@@ -59,36 +69,7 @@ CREATE TABLE IF NOT EXISTS `MeasurementsStatus`(
 CREATE TABLE IF NOT EXISTS `Measurements`(
     Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     Magnitude VARCHAR(20) NOT NULL,
-    MeasurementDate DATE NOT NULL,
+    MeasurementDate DATETIME NOT NULL,
     BatteryId INT NOT NULL,
     FOREIGN KEY (BatteryId) REFERENCES Batteries(Id)
     ) ENGINE = InnoDB;
-/*CREATE TABLE IF NOT EXISTS `Empleados`(
-    Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    Legajo INT NOT NULL,
-    Nombre VARCHAR(30) NOT  NULL,
-    Apellido VARCHAR(20) NOT  NULL,
-    IdentificadorUnico INT NOT NULL,
-    IdentificadorUnicoLaboral VARCHAR(15) NULL,
-    NumeroJubilacion INT NULL,
-    Genero VARCHAR(20) NOT NULL,
-    FechaNacimiento DATE NULL,
-    Celular VARCHAR(20) NULL,
-    Email VARCHAR(50) NULL,
-    CondicionImpositiva VARCHAR(40) NULL,
-    FechaIngreso DATE NULL,
-    HorasDiarias INT NULL,
-    FuncionId INT NOT NULL,
-    TipoId INT NOT NULL,
-    AreaAdministrativaId INT NOT NULL,
-    CategoriaId INT NOT NULL,
-    UbicacionTrabajoId INT NOT NULL,
-    ResponsabilidadId INT NOT NULL,
-    FOREIGN KEY (FuncionId) REFERENCES Funciones(Id),
-    FOREIGN KEY (TipoId) REFERENCES Tipos(Id),
-    FOREIGN KEY (AreaAdministrativaId) REFERENCES AreasAdministrativas(Id),
-    FOREIGN KEY (CategoriaId) REFERENCES Categorias(Id),
-    FOREIGN KEY (UbicacionTrabajoId) REFERENCES UbicacionesTrabajo(Id),
-    FOREIGN KEY (ResponsabilidadId) REFERENCES Responsabilidades(Id)
-    ) ENGINE = InnoDB;
-*/

@@ -34,6 +34,7 @@ services:
       URL_DOMAIN: http://localhost:4200
       MINIO_HOST: minio
       MINIO_PORT: 9000
+      MAIL_RECOVERY: valentin.martinezdev@gmail.com
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_HTTP_PORTS: "5000"
       ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
@@ -164,9 +165,9 @@ services:
     image: minio/minio
     container_name: minio
     restart: always
-    #ports:
-    #  - "9000:9000"
-    #  - "9001:9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
     volumes:
       - minio-data:/data
       - ./scripts/env-vars-check.sh:/scripts/env-vars-check.sh
