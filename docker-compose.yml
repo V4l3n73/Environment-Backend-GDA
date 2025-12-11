@@ -31,7 +31,7 @@ services:
       MONGODB_CONNECTION_DATABASE_ADMIN: admin
       MONGODB_CONNECTION_DATABASE: DbGDA
       MONGODB_CONNECTION_AUTHENTICATION: SCRAM-SHA-256
-      URL_DOMAIN: http://localhost:4200
+      URL_DOMAIN: https://frontgdadev.marbrus.com.ar
       MINIO_HOST: minio
       MINIO_PORT: 9000
       MAIL_RECOVERY: valentin.martinezdev@gmail.com
